@@ -32,8 +32,19 @@ void setup() {
 
 void loop() {
   // send the value of analog input 0:
-  Serial.println(analogRead(A1));
+  Serial.print(analogRead(A0));
+  Serial.print("/");
+  Serial.print(analogRead(A1));
+  Serial.print("/");
+  Serial.print(analogRead(A2));
+  Serial.print("/");
+  Serial.print(analogRead(A3));
+  Serial.print("/");
+  Serial.print(analogRead(A4));
+  Serial.print("/");
+  Serial.print(analogRead(A5));
+  Serial.print("\n");
   // wait a bit for the analog-to-digital converter to stabilize after the last
   // reading:
-  delay(2);
+  delay(10);
 }

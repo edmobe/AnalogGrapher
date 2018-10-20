@@ -17,7 +17,7 @@ float inByte = 0;
 
 void setup () {
   // set the window size:
-  size(400, 300);
+  size(1600, 1200);
 
   // List all the available serial ports
   // if using Processing 2.1 or later, use Serial.printArray()
@@ -48,19 +48,28 @@ void draw () {
     // increment the horizontal position:
     xPos++;
   }
+  
 }
 
 void serialEvent (Serial myPort) {
   // get the ASCII string:
   String inString = myPort.readStringUntil('\n');
-
+  
   if (inString != null) {
-    float voltage = float(inString) * 5/1024;
+    // creates an array with all analog inputs
+    inString = inString.substring(0, inString.length() - 1);
+    String[] input = split(inString, '/');
+    print("[" + input[0]);
+    for(int i = 1; i < input.length; i++) {
+      print("," + input[i]);
+    }
+    print("]\n");
+    float voltage = float(input[0]) * 5/1024;
     println("Input voltage: " + voltage + " V");
     // trim off any whitespace:
-    inString = trim(inString);
+    inString = trim(input[0]);
     // convert to an int and map to the screen height:
-    inByte = float(inString);
+    inByte = float(input[0]);
     println(inByte);
     inByte = map(inByte, 0, 1023, 0, height);
   }
