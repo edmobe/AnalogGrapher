@@ -25,13 +25,19 @@
   http://www.arduino.cc/en/Tutorial/Graph
 */
 
+int currentPulseVoltage;
+int lastPulseVoltage;
+int counter;
+float currentTime;
+float lastTime;
+
 void setup() {
   // initialize the serial communication:
   Serial.begin(9600);
 }
 
 void loop() {
-  // send the value of analog input 0:
+  
   Serial.print(analogRead(A0));
   Serial.print("/");
   Serial.print(analogRead(A1));
@@ -44,7 +50,23 @@ void loop() {
   Serial.print("/");
   Serial.print(analogRead(A5));
   Serial.print("\n");
-  // wait a bit for the analog-to-digital converter to stabilize after the last
-  // reading:
-  delay(10);
+  
+  //Serial.println(analogRead(A2));
+  /*
+  currentPulseVoltage = analogRead(A2);
+  if (currentPulseVoltage > 430 && lastPulseVoltage <= 430) {
+      counter++;
+  }
+  if (counter >= 3) {
+    currentTime = millis();
+    Serial.println(currentTime - lastTime);
+    counter = 0;
+    lastTime = currentTime;
+  }
+  lastPulseVoltage = currentPulseVoltage;
+  */
+  //Serial.println(currentPulseVoltage);
+  
+  
+  //delay(10);
 }
